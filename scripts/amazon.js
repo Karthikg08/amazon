@@ -79,3 +79,5 @@ import { formatCurrency } from './utils/money.js';
         console.log(cart);
     });
   })
+
+  
