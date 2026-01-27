@@ -57,18 +57,23 @@ import { formatCurrency } from './utils/money.js';
   });
 
   
-
+  
+  
+  document.querySelector('.js-products-grid').innerHTML = productsHTML;
+  updateCartQuantity();
+  
   function updateCartQuantity(){
-    let cartquantity = 0;
-      cart.forEach((cartItem) => {
-        cartquantity += cartItem.quantity;
-      })
-    document.querySelector('.js-cart-quantity').innerHTML = cartquantity;
-    console.log(cartquantity)
+    let cartQuantity = 0;
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
+    });
+  
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+    
+    console.log(cartQuantity);
   }
 
 
-  document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
   document.querySelectorAll('.js-add-to-cart-button').forEach((button) => {
     button.addEventListener('click',() => {
