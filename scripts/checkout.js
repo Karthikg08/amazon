@@ -1,9 +1,15 @@
 import {cart, removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 import { formatCurrency} from'./utils/money.js';
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 
 let cartSummaryHTML = '';
+
+let today = dayjs();
+let deliveryDate = today.add(7, 'days');
+console.log(deliveryDate.format('ddd, MMM D'));
+
 
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
@@ -121,4 +127,3 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     
   });
   document.querySelector('.js-return-to-home-link').innerHTML = `${cartquantity} items`;
-console.log(cartquantity);
