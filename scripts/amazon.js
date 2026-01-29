@@ -81,8 +81,7 @@ import { formatCurrency } from './utils/money.js';
         addToCart(productId);
         updateCartQuantity()
      
-        console.log(cart);
     });
-  })
+  });
 
   
