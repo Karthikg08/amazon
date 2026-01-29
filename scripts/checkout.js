@@ -7,11 +7,6 @@ import {deliveryOptions} from '../data/deliveryOptions.js';
 
 let cartSummaryHTML = '';
 
-let today = dayjs();
-let deliveryDate = today.add(7, 'days');
-console.log(deliveryDate.format('ddd, MMM D'));
-
-
 cart.forEach((cartItem) => {
   const productId = cartItem.productId;
 
@@ -22,11 +17,27 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
+
+  const deliveryOptionId = cartItem.deliveryOptionId;
+  let deliveryOption;
+
+  deliveryOptions.forEach((option) => {
+    if (option.id === deliveryOptionId){
+       deliveryOption = option;
+    }
+  });
+
+  const today = dayjs();
+  const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+  const dateString = deliveryDate.format('dddd, MMM D');
+
+
+
    
 cartSummaryHTML += `
   <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
       <div class="delivery-date">
-        Delivery date: Tuesday, June 21
+        Delivery date: ${dateString}
       </div>
 
       <div class="cart-item-details-grid">
@@ -71,7 +82,7 @@ function deliveryDateOption(matchingProduct,cartItem){
   deliveryOptions.forEach((deliveryOption) => {
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
-    const deliveryString = deliveryDate.format('dddd, MMM D');
+    const dateString = deliveryDate.format('dddd, MMM D');
 
     const priceString = deliveryOption.priceCents === 0
       ? 'FREE'
@@ -88,7 +99,7 @@ function deliveryDateOption(matchingProduct,cartItem){
         name="delivery-option-${matchingProduct.id}">
       <div>
         <div class="delivery-option-date">
-          $${deliveryString}
+          $${dateString}
         </div>
         <div class="delivery-option-price">
           ${priceString} - Shipping
