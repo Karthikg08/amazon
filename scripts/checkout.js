@@ -23,7 +23,7 @@ cart.forEach((cartItem) => {
 
   deliveryOptions.forEach((option) => {
     if (option.id === deliveryOptionId){
-       deliveryOption = option;
+       deliveryOption = option; 
     }
   });
 
@@ -88,7 +88,7 @@ function deliveryDateOption(matchingProduct,cartItem){
       ? 'FREE'
       : `${formatCurrency(deliveryOption.priceCents)}`;
 
-   const isChecked = deliveryOption.id === cartItem.deliveryOptionId;
+   const isChecked = deliveryOption.id === cartItem.deliveryOptionId; 
 
       
   html +=`
@@ -99,7 +99,7 @@ function deliveryDateOption(matchingProduct,cartItem){
         name="delivery-option-${matchingProduct.id}">
       <div>
         <div class="delivery-option-date">
-          $${dateString}
+          ${dateString}
         </div>
         <div class="delivery-option-price">
           ${priceString} - Shipping
