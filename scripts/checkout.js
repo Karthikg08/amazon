@@ -4,7 +4,7 @@ import { formatCurrency} from'./utils/money.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 import {deliveryOptions} from '../data/deliveryOptions.js';
 
-
+function renderOrderSummary() {
 let cartSummaryHTML = '';
 
 cart.forEach((cartItem) => {
@@ -69,14 +69,14 @@ cartSummaryHTML += `
           <div class="delivery-options-title">
             Choose a delivery option:
           </div>
-          ${deliveryDateOption(matchingProduct,cartItem)}
+          ${deliveryDateHTML(matchingProduct,cartItem)}
         </div>
       </div>
     </div>
   `;
 })
 
-function deliveryDateOption(matchingProduct,cartItem){
+function deliveryDateHTML(matchingProduct,cartItem){
   let html = '';
 
   deliveryOptions.forEach((deliveryOption) => {
@@ -143,5 +143,8 @@ document.querySelectorAll('.js-delete-link').forEach((link) => {
     element.addEventListener('click', () => {
       const {productId, deliveryOptionId} = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
+      renderOrderSummary();
     });
   });
+}
+renderOrderSummary();
