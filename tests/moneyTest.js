@@ -7,3 +7,11 @@ if (formatCurrency(4359) === '43.59') {
 } else {
   console.log('it\'s not working')
 }
+
+console.log('work with zero')
+
+if(formatCurrency(0) === '0.00'){
+  console.log('passed')
+}else{
+  console.log('failed')
+}
