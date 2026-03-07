@@ -7,9 +7,10 @@ describe('test suite: renderOrderSummary', () => {
     document.querySelector('.js-test-container').innerHTML =` 
       <div class="js-order-summary"></div> 
     `;
+    const product1 ="e43638ce-6aa0-4b85-b27f-e1d07eb678c6"
     spyOn(localStorage, 'getItem').and.callFake(() => {
       return JSON.stringify([{
-        productId:"e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+        productId:product1,
         quantity: 2, 
         deliveryOptionId: '1'
       },{
@@ -25,5 +26,8 @@ describe('test suite: renderOrderSummary', () => {
     expect(
       document.querySelectorAll('.js-cart-item-container').length
     ).toEqual(2);
+    expect(
+    document.querySelector(`.js-product-quantity-${product1}`).innerText
+    ).toContain('Quantity: 2');
   });
 });
