@@ -1,12 +1,11 @@
-export let cart; // shortcut cart = undefined; 
+const cart = {
+   cartItems: undefined, // shortcut 'cart;'
 
-loadFromStorage();
+   loadFromStorage(){
+  this.cart =JSON.parse(localStorage.getItem('cart-oop')) 
 
-export function loadFromStorage(){
-  cart =JSON.parse(localStorage.getItem('cart')) 
-
-if (!cart){
-  cart =[{
+if (!this.cart){
+  this.cart =[{
     productId:"e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     quantity: 2, 
     deliveryOptionId: '1'
@@ -16,11 +15,21 @@ if (!cart){
     deliveryOptionId: '2'
   }];
 }
+},
+
+saveToStorage(){
+  localStorage.setItem('cart-oop', JSON.stringify(this.cart));
 }
 
-function saveToStorage(){
-  localStorage.setItem('cart', JSON.stringify(cart));
 }
+
+ 
+
+loadFromStorage();
+
+
+
+
 
 export function addToCart(productId){
     let matchingItem ;
