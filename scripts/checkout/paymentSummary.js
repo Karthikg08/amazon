@@ -65,8 +65,9 @@ export function renderPaymentSummary(){
       
       document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
       
-      
+  /*    
   console.log("Product Price: ",formatCurrency(productPriceCents));
   console.log("tax price: ", formatCurrency(deliveryPriceCents));
   console.log("total before Tax: ", totalBeforeTaxCents);
+  */
 }
