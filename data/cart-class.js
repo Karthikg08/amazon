@@ -1,26 +1,26 @@
-function Cart(localStorageKey){
-  const cart = {
-   cartItems: undefined, // shortcut 'cart;'
+class Cart {
+  cartItems = undefined; // shortcut 'cart;'
+  localStorageKey = undefined;
 
-   loadFromStorage(){
-  this.cart =JSON.parse(localStorage.getItem(localStorageKey)) 
+  loadFromStorage(){
+    this.cart =JSON.parse(localStorage.getItem(this.localStorageKey)) 
 
-  if (!this.cart){
-    this.cartItems =[{
-      productId:"e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      quantity: 2, 
-      deliveryOptionId: '1'
-    },{
-      productId:"15b6fc6f-327a-4ec4-896f-486349e85a3d",
-      quantity:1,
-      deliveryOptionId: '2'
-    }];
+      if (!this.cart){
+        this.cartItems =[{
+          productId:"e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+          quantity: 2, 
+          deliveryOptionId: '1'
+        },{
+          productId:"15b6fc6f-327a-4ec4-896f-486349e85a3d",
+          quantity:1,
+          deliveryOptionId: '2'
+        }];
+      }
   }
-  },
 
   saveToStorage(){
-    localStorage.setItem(localStorageKey, JSON.stringify(this.cartItems));
-  },
+    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+  }
 
   addToCart(productId){
     let matchingItem ;
@@ -40,9 +40,9 @@ function Cart(localStorageKey){
         });
       }
       saveToStorage();
-  },
+  }
 
-   removeFromCart(productId){
+  removeFromCart(productId){
     const newCart = []
     this.cartItems.forEach((cartItem) => {
       if (productId !== cartItem.productId){
@@ -52,9 +52,9 @@ function Cart(localStorageKey){
 
     this.cartItems = newCart;
     saveToStorage();
-  }, 
+  }
 
-   updateDeliveryOption(productId, deliveryOptionId){
+  updateDeliveryOption(productId, deliveryOptionId){
     let matchingItem ;
 
       this.cartItems.forEach((cartItem) =>{
@@ -65,23 +65,21 @@ function Cart(localStorageKey){
       matchingItem.deliveryOptionId = deliveryOptionId;
       saveToStorage();
 
-    }
+  }
+
 
 }
-return cart;
-} 
-
-const cart = Cart('cart-oop');        
-const businessCart = Cart('business-cart');        
 
 
+
+const cart =new Cart();        
+const businessCart =new Cart();        
 
 cart.loadFromStorage();
 businessCart.loadFromStorage();
 
- 
-
-
+cart.localStorageKey = 'cart-oop';
+businessCart.localStorageKey = 'business-cart';
 
 console.log(cart); 
 console.log(businessCart); 
