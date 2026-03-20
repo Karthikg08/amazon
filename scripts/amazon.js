@@ -56,10 +56,11 @@ function renderProductsGrid(){
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-Id="${product.id}">
+          <button class="add-to-cart-button button-primary js-add-to-cart-button" data-product-id="${product.id}">
             Add to Cart
           </button>
-        </div>`
+        </div>
+        `;
         
   });
 
@@ -71,13 +72,13 @@ function renderProductsGrid(){
   
   function updateCartQuantity(){
     let cartQuantity = 0;
+
     cart.forEach((cartItem) => {
       cartQuantity += cartItem.quantity;
     });
   
     document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
     
-    console.log(cartQuantity);
   }
 
 

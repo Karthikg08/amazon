@@ -27,7 +27,7 @@ class Product {
   }
 
   getStarsUrl() {
-    return `images/ratings/rating-${this.rating.stars*10}.png`
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
   }
 
   getPrice() {
@@ -51,8 +51,8 @@ class Clothing extends Product {
 
   extraInfoHTML() {
     return`
-    <a href="${this.sizeChartLink}" target = "_blank">size chart</a>
-    `;
+      <a href="${this.sizeChartLink}" target = "_blank">size chart</a>
+      `;
 
   }
 
@@ -89,7 +89,7 @@ const object3 = {
 object3.method();
 */
 
-let products = [];
+export let products = [];
 
 export function loadProducts(fun) {
   const xhr = new XMLHttpRequest();
