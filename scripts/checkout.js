@@ -5,6 +5,30 @@ import { loadCart } from '../data/cart.js';
 //import '../data/cart-class.js';
 //import '../data/backend-practice.js';
 
+/*                                                     function loadPage() {
+async function loadPage() {                               return new Promise((resolve) => {
+  console.loga('load data');  /  this code is = /          console.log('load data');
+  return 'valur 1'    /    this return  converts to this   resolve('value 1');
+}                                                             });}
+*/
+
+
+async function loadPage() {
+  await loadProductsFetch();
+  
+ const value = await new Promise((resolve) => {
+    loadCart(() => {
+      resolve();
+    });
+  });
+
+  renderOrderSummary();
+  renderPaymentSummary();
+}
+loadPage();
+
+
+/*
 Promise.all([
   loadProductsFetch(),
   new Promise((resolve) => {
@@ -26,6 +50,7 @@ Promise.all([
   renderOrderSummary();
   renderPaymentSummary();
 });
+*/
 
 /*
 
