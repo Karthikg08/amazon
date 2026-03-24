@@ -129,6 +129,12 @@ export function loadProducts(fun) {
     console.log('load products');
     fun();
   });
+  // error handling, set up seperate callback for error handling
+
+  xhr.addEventListener('error', (error) => {
+    console.log('unexpected error, please try again later');
+  });
+
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();

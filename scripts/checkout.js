@@ -14,13 +14,21 @@ async function loadPage() {                               return new Promise((re
 
 
 async function loadPage() {
-  await loadProductsFetch();
-  
- const value = await new Promise((resolve) => {
-    loadCart(() => {
-      resolve();
-    });
-  });
+  try {
+    //throw 'error1';  this is manually throw error, to test error handling 
+    await loadProductsFetch();
+      
+    const value = await new Promise((resolve, reject) => {
+     // throw 'error2';  // this is manually throw error, to test error handling
+        loadCart(() => {
+          //reject('error3');
+          resolve();
+        });
+      });
+  }catch (error) {
+    console.log('unexpected error, please try again later.');
+  }
+ 
 
   renderOrderSummary();
   renderPaymentSummary();
